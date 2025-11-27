@@ -6,11 +6,13 @@
     include_once(__DIR__."/../include/header.php");    
 ?>
 
-<h3>Listagem de Projetos</h3> 
+<div class="container">
+    <h3>Listagem de Tarefas</h3> 
+    
+    <div style="margin-bottom: 15px;">
+        <a href="inserir.php" class="btn">Nova Tarefa +</a>
+    </div>
 
-<div>
-    <a href="inserir.php">Inserir</a>
-</div>
 
 <table>
     <!-- Cabeçalho -->
@@ -48,6 +50,7 @@
     <?php endforeach; ?>
 
 </table>
+</div>
 <?php
 include_once(__DIR__."/../include/footer.php");
 ?>

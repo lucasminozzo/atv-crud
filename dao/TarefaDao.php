@@ -93,7 +93,7 @@
                     WHERE id = ?";
             $stm = $this->conn->prepare($sql);
             $stm->execute(array($tarefa->getTitulo(), 
-                                $tarefa->getdescricao(),
+                                $tarefa->getDescricao(),
                                 $tarefa->getStatus(), 
                                 $tarefa->getProjeto()->getId(),
                                 $tarefa->getUsuario()->getId(),
