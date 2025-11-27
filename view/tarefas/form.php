@@ -15,7 +15,7 @@
 <h3>Inserir Tarefa</h3>
 
 <form method="POST" action="">
-
+    <input type="hidden" name="id" value="<?= $tarefa ? $tarefa->getId() : '' ?>">
     <div>
         <label for="txtNome">Titulo:</label>
         <input type="text" id="txtTitulo" name="titulo"
