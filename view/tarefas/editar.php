@@ -10,8 +10,8 @@ $tarefa = NULL;
 if(isset($_POST['titulo'])) {
     //Já clicou no gravar
     //Capturar os valores preechidos no formulário
-    $id         = $_POST["id"];
-    $titulo     = ($_POST['nome']) ? ($_POST['nome']) : NULL;
+    $id         = $_POST['id'];
+    $titulo     = ($_POST['titulo']) ? ($_POST['titulo']) : NULL;
     $descricao  = ($_POST['descricao']) ? ($_POST['descricao']) : NULL; 
     $status     = trim($_POST['status']) ? trim($_POST['status']) : NULL;
     $idprojeto  = is_numeric($_POST['projeto']) ? $_POST['projeto'] : NULL;

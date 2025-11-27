@@ -1,11 +1,11 @@
 <?php
 $msgErro = "";
-$aluno= NULL;
-if(isset($_POST['nome'])){
+$tarefa= NULL;
+if(isset($_POST['titulo'])){
     include_once(__DIR__."/../../model/Tarefa.php");
     include_once(__DIR__."/../../controller/TarefaController.php");
-    $titulo= ($_POST['titulo']) ? ($_POST['titulo']) : NULL;
-    $descricao= ($_POST['descricao']) ? ($_POST['descricao']) : NULL; 
+    $titulo= trim($_POST['titulo']) ? trim($_POST['titulo']) : NULL;
+    $descricao= trim($_POST['descricao']) ? trim($_POST['descricao']) : NULL; 
     $status= trim($_POST['status']) ? trim($_POST['status']) : NULL;
     $idprojeto= is_numeric($_POST['projeto']) ? $_POST['projeto'] : NULL;
     $idusuario= is_numeric($_POST['usuario']) ? $_POST['usuario'] : NULL;
@@ -29,7 +29,6 @@ if(isset($_POST['nome'])){
         $tarefa->setUsuario(NULL);
     
     $tarefaCont = new TarefaController();
-    $tarefaCont->inserir($tarefa);
     $erros= $tarefaCont->inserir($tarefa);
     if(! $erros)
         header("Location: listar.php");

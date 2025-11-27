@@ -89,7 +89,7 @@
         try {
             $sql = "UPDATE tarefas 
                     SET titulo = ?, descricao = ?, 
-                        status = ?, id_prjeto = ?, id_usuario = ? 
+                        status = ?, id_projeto = ?, id_usuario = ? 
                     WHERE id = ?";
             $stm = $this->conn->prepare($sql);
             $stm->execute(array($tarefa->getTitulo(), 

@@ -14,20 +14,20 @@
 ?>
 <h3>Inserir Tarefa</h3>
 
-<form method="POST" action="inserir.php">
+<form method="POST" action="">
 
     <div>
         <label for="txtNome">Titulo:</label>
         <input type="text" id="txtTitulo" name="titulo"
             placeholder="Informe o titulo"
-            value=<?= $tarefa ? $tarefa->getTitulo() : ''?>>
+            value="<?= $tarefa ? $tarefa->getTitulo() : ''?>">
     </div>
 
     <div>
         <label for="txtDescricao">Descrição:</label>
         <input type="text" id="txtDescricao" name="descricao"
             placeholder="Informe a descrição"
-            value=<?= $tarefa ? $tarefa->getDescricao() : ''?>>
+            value="<?= $tarefa ? $tarefa->getDescricao() : ''?>">
     </div>
 
     <div>
