@@ -11,7 +11,7 @@
         public function __construct(){
             $this->conn = Connection::getConnection();
         }
-        public function list(){ // TODO 
+        public function list(){ 
             $sql = "SELECT t.*, p.nome AS nome_projeto, u.nome AS nome_usuario FROM tarefas t JOIN projetos p ON (p.id = t.id_projeto) JOIN usuarios u ON (u.id = t.id_usuario);";
             $stm= $this->conn->prepare($sql);
             $stm->execute();
@@ -74,34 +74,50 @@
         }catch(PDOException $e){
             die("Erro ao inserir Tarefa: ".$e->getMessage());
         }
-    }
-    public function delete(int $id){
-        try{
-            $sql= "DELETE FROM tarefas WHERE id = ?;";
-            $stm= $this->conn->prepare($sql);
-            $stm->execute(array($id));
-        }catch(PDOException $e){
-            die("Erro ao deletar tarefa: ".$e->getMessage());
         }
+        public function delete(int $id){
+            try{
+                $sql= "DELETE FROM tarefas WHERE id = ?;";
+                $stm= $this->conn->prepare($sql);
+                $stm->execute(array($id));
+            }catch(PDOException $e){
+                die("Erro ao deletar tarefa: ".$e->getMessage());
+            }
 
-    }
-    public function update(Tarefa $tarefa) {
-        try {
-            $sql = "UPDATE tarefas 
-                    SET titulo = ?, descricao = ?, 
-                        status = ?, id_projeto = ?, id_usuario = ? 
-                    WHERE id = ?";
+        }
+        public function update(Tarefa $tarefa) {
+            try {
+                $sql = "UPDATE tarefas 
+                        SET titulo = ?, descricao = ?, 
+                            status = ?, id_projeto = ?, id_usuario = ? 
+                        WHERE id = ?";
+                $stm = $this->conn->prepare($sql);
+                $stm->execute(array($tarefa->getTitulo(), 
+                                    $tarefa->getDescricao(),
+                                    $tarefa->getStatus(), 
+                                    $tarefa->getProjeto()->getId(),
+                                    $tarefa->getUsuario()->getId(),
+                                    $tarefa->getId()));
+            } catch(PDOException $e) {
+                die($e->getMessage());
+            }                   
+        }
+        public function findByTitulo(string $titulo){
+            $sql = "SELECT t.*, p.nome nome_projeto, u.nome nome_usuario
+                    FROM tarefas t
+                    JOIN projetos p ON (p.id = t.id_projeto)
+                    JOIN usuarios u ON (u.id = t.id_usuario)
+                    WHERE t.Titulo = ?";
             $stm = $this->conn->prepare($sql);
-            $stm->execute(array($tarefa->getTitulo(), 
-                                $tarefa->getDescricao(),
-                                $tarefa->getStatus(), 
-                                $tarefa->getProjeto()->getId(),
-                                $tarefa->getUsuario()->getId(),
-                                $tarefa->getId()));
-        } catch(PDOException $e) {
-            die($e->getMessage());
-        }                   
-    }
+            $stm->execute([$titulo]);
+            $result = $stm->fetchAll();
+            $tarefas = $this->map($result);
+
+        if(count($tarefas) == 1)
+            return $tarefas[0];
+
+        return NULL;
+        }
     
 
 }

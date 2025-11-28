@@ -10,6 +10,7 @@ if(isset($_POST['titulo'])){
     $idprojeto= is_numeric($_POST['projeto']) ? $_POST['projeto'] : NULL;
     $idusuario= is_numeric($_POST['usuario']) ? $_POST['usuario'] : NULL;
     $tarefa= new Tarefa();
+    $tarefa->setId(0);
     $tarefa->setTitulo($titulo);
     $tarefa->setDescricao($descricao);
     $tarefa->setStatus($status);
