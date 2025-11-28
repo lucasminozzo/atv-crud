@@ -21,7 +21,7 @@
             <label for="txtTitulo">Título:</label>
             <input type="text" id="txtTitulo" name="titulo" 
                 placeholder="Ex: Corrigir bug no login"
-                required
+            
                 value="<?= $tarefa ? $tarefa->getTitulo() : ''?>">
         </div>
 

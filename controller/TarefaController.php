@@ -37,9 +37,14 @@
         public function deletar(int $id){
             $this->tarefaDao->delete($id);
         }
+        public function findByTitulo(string $titulo){
+            $contem = $this->tarefaDao->findByTitulo($titulo);
+            if($contem)
+                return true;
+            return false;    
+        }
 
 
     }
-
-
+        
 ?>
