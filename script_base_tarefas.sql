@@ -38,8 +38,3 @@ INSERT INTO tarefas (titulo, descricao, status, id_projeto, id_usuario) VALUES
 /* Projeto Alpha, Bruno Souza (Em Andamento) */
 /* Projeto Beta, Carla Mendes (Pendente) */
 
-SELECT t.*, p.nome nome_projeto, u.nome nome_usuario
-                FROM tarefas t
-                JOIN projetos p ON (p.id = t.id_projeto)
-                JOIN usuarios u ON (u.id = t.id_usuario)
-                WHERE p.id = 1
